@@ -1,0 +1,8 @@
+build
+node_modules
+coverage.json
+coverage
+.DS_Store
+*.sublime-project
+*.sublime-workspace
+.idea

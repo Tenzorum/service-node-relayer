@@ -1,0 +1,15 @@
+{
+  "name": "tenz-tsn-js",
+  "version": "1.0.0",
+  "description": "Tenzorum Service Node",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Radek Ostrowski",
+  "license": "ISC",
+  "dependencies": {
+    "ethereumjs-tx": "^1.3.7",
+    "web3": "^1.0.0-beta.35"
+  }
+}
