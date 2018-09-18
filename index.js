@@ -65,8 +65,6 @@ const executeCall = async function(personalWallet, payload) {
     //prepare data object
     let data = prepareData(payload);
 
-    // console.log("data", data);
-
     let rawTx = {
         nonce: nonce,
         gasPrice: gasPrice,
@@ -96,63 +94,15 @@ const executeCall = async function(personalWallet, payload) {
     });
 
     return txPromise;
-
-}
-
-var validateCall = function() {
-    //TODO
-}
-
-var quoteInTokens = async function(tokenAddress, valueInEther) {
-    //this function should check the price of the token and return an amount
-    // for the corresponding value in ether
-    //need to query some exchange or feed internal price
-}
-
-var quote = async function(personalWallet, payload) {
-    let walletInstance = new web3.eth.Contract(ABI, personalWallet);
-    let gasEstimate = await walletInstance.methods.execute(
-        payload.v, payload.r, payload.s,
-        payload.from, payload.to,
-        payload.value, payload.data,
-        payload.rewardType, payload.rewardType
-    ).estimateGas({from: payload.from});
-    console.log("gasEstimate", gasEstimate);
-    gasEstimate = new BN(gasEstimate);
-    let gasPrice = new BN(await web3.eth.getGasPrice());
-    console.log(gasEstimate.toString(10), BN.isBN(gasEstimate));
-    console.log(gasPrice.toString(10), BN.isBN(gasPrice));
-
-    let quoteInEther = gasEstimate.mul(gasPrice);//gasEstimate*standardGasPrice + 20%;
-    console.log("quoteInEther", quoteInEther.toString(10));
-    if(payload.rewardType === rewardTypeEther) {
-        return quoteInEther.toString(10);
-    }
-    return quoteInTokens(payload.rewardType, quoteInEther);
-    //maybe also give a quote number and TTL for this quote
-    //like quote number and the number signed
-    //if quote number is then provided it can be checked
-    //and must be honoured
 }
 
 app.post('/execute/:personalWallet', async (req, res) => {
     let hash = await executeCall(req.params.personalWallet, req.body);
-    //res.status(202);
-    //res.set('Content-Type', 'application/json');
+    res.status(202);
     console.log("returning: " + hash);
-    //res.end('{"txHash": "' + hash + '"}');
     res.json({txHash: hash});
 })
 
-app.post('/quote/:personalWallet', async (req, res) => {
-    let q = await quote(req.params.personalWallet, req.body);
-    res.status(200);
-    res.set('Content-Type', 'application/json');
-    let response = {};
-    console.log("q", q);
-    //response.quote = q;
-    res.end(q);
-})
 
 let server = app.listen(80, function () {
     console.log("Example app listening at port 80");
