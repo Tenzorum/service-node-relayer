@@ -6,3 +6,4 @@ coverage
 *.sublime-project
 *.sublime-workspace
 .idea
+deployment
