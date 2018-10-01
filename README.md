@@ -22,7 +22,7 @@ Then just run it like this:
 npm run start
 ```
 
-This you should produce a message resembling the following, confirm the public address of the
+This should produce a message resembling the following, confirm the public address of the
 account you wanted to use is correct:
 
 ```
@@ -43,7 +43,7 @@ docker run -it -p7777:8080 \
     radek1st/tenz-tsnn-js:0.0.1
 ```
 
-This you should produce a message resembling the following, confirm the public address of the
+This should produce a message resembling the following, confirm the public address of the
 account you wanted to use is correct:
 
 ```
