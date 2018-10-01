@@ -96,6 +96,7 @@ app.post('/execute/:personalWallet', async (req, res) => {
     res.json({txHash: hash});
 });
 
+//test enpoint
 app.get('/ping', async (req, res) => {
     res.status(200);
     res.json({res: 'pong'});
