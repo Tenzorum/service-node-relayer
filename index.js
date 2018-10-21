@@ -3,8 +3,10 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const Tx = require('ethereumjs-tx');
 const ethUtils = require('ethereumjs-util');
+const cors = require('cors')
 const app = express();
 app.use(bodyParser.json());
+app.use(cors());
 
 const web3 = new Web3(new Web3.providers.HttpProvider(process.env.WEB3_PROVIDER));
 const privateKey = Buffer.from(process.env.PRIVATE_KEY, 'hex');
@@ -54,7 +56,7 @@ const executeCall = async function(personalWallet, payload) {
     //let personalWallet = new web3.eth.Contract(ABI, req.params.personalWallet);
     //TODO: check gas estimates
     const gasLimit = web3.utils.toHex("211000");
-    const gasPrice = web3.utils.toHex(web3.utils.toWei("10","gwei"));
+    const gasPrice = web3.utils.toHex(web3.utils.toWei("15","gwei"));
     const nonce = web3.utils.toHex(await web3.eth.getTransactionCount(publicAddress));
 
     let data = prepareData(payload);

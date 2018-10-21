@@ -40,7 +40,7 @@ to be used:
 docker run -it -p7777:8080 \
     -e WEB3_PROVIDER='https://ropsten.infura.io/abcdefghigk' \
     -e PRIVATE_KEY='1a2e...e741' \
-    radek1st/tenz-tsnn-js:0.0.1
+    radek1st/tenz-tsnn-js:0.0.2
 ```
 
 This you should produce a message resembling the following, confirm the public address of the
